@@ -1,5 +1,5 @@
 % Import smallperiodictable.txt
-A = readtable(smallperiodictable)
+A = readtable('smallperiodictable.txt')
 
 % Import smallperiodictable.csv
-B = readtable(smallperiodictable)
+B = readtable('smallperiodictable.csv')
