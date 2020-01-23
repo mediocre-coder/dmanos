@@ -2,7 +2,7 @@
 T = readtable('smallperiodictable.txt');
 
 % Add variable names
-T.Properties.VariableNames = {'atomicnum' 'element' 'symbol' 'atomicweight' 'density' 'isotopes' 'discyear'};
+T.Properties.VariableNames = {'atomicnum' 'element' 'symbol' 'atomicweight' 'density' 'isotopes' 'discyear'}
 
 % Convert to a struct
 S = table2struct(T);
@@ -12,8 +12,7 @@ S = table2struct(T);
 %Q1
 % Find the density of mercury by indexing into the struct
 Hg = S(80).density;
-% Isolate the densities from the table
-de = T.density;
-% Find the list of elements denser than mercury
-numel = de(de>Hg)
+% Find the number of elements that are denser than Hg and have < 30
+% isotopes
+NumE = S
 
