@@ -10,7 +10,7 @@ h = (G*M*T^2/(4*pi^2))^(1/3)-R; % calculate height in meters
 x = h/1000; % calculate height in km
 
 % calculate velocity in m/s
-v = ((G * M)/ h + R)^(1/2);
+v = ((G * M)/ (h + R))^(1/2); % update - added parenthesis around (h + R)
 % calculate velocity in km/s
 v = v/1000;
 
