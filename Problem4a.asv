@@ -31,5 +31,8 @@ disc20 = T.symbol(T.discyear>=1901 & T.discyear<=2000)
 
 % Q3
 disp('Q3')
-% Find the top 10 elements with the largest isotopes
-top10 = maxk(T.element(T.isotopes) , 10)
+% Find the lower limit of thetop  10 elements with the largest isotopes
+top10 = maxk(T.isotopes , 10))
+% List the names of the elements in order
+%names = T.element(T.isotopes >= 32);
+

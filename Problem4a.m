@@ -17,7 +17,8 @@ Hg = S(80).density;
 % Shoutout to Stephan for this code
 d30 = T.element(T.density>Hg & T.isotopes<30);
 % Find the number of elements
-ne = numel(d30)
+ne = numel(d30);
+disp(ne)
 % List the elements in alphabetical order
 disp(sort(d30))
 
@@ -25,12 +26,19 @@ disp(sort(d30))
 disp('Q2')
 % Calculate the average atomic weight of elements discovered in the 20th
 % century
-avg = mean(T.discyear>=1901 & T.discyear<=2000)
+avg = mean(T.discyear>=1901 & T.discyear<=2000);
+disp(avg)
 % List those elements' symbols
-disc20 = T.symbol(T.discyear>=1901 & T.discyear<=2000)
+disc20 = T.symbol(T.discyear>=1901 & T.discyear<=2000);
+disp(disc20)
 
 % Q3
 disp('Q3')
-% Find the top 10 elements with the largest isotopes
-% top10 = maxk(T.element(T.isotopes) , 10)
-% This is wrong oops - find another method
+% Find the values of the top 10 largest numbers of isotopes
+topes = maxk(T.isotopes , 10);
+% List the names of those elements
+%top10 = T.element(topes)
+% find another method - above doens't work
+
+
+
