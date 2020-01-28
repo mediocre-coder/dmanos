@@ -1,3 +1,6 @@
+% load variables
+load('p3')
+
 % v.*u
 ans1 = v.*u
 
