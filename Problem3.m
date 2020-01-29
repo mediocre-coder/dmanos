@@ -35,7 +35,7 @@ ans10 = A.^2
 %this squares each individual element within the matrix
 
 %infinite series
-n = (1:100);
+n = (0:100);
 series = (12^(.5)).*(((-3).^(-n))./(2.*n+1));
 sum = sum(series)
 

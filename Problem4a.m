@@ -34,11 +34,17 @@ disp(disc20)
 
 % Q3
 disp('Q3')
-% Find the values of the top 10 largest numbers of isotopes
-topes = maxk(T.isotopes , 10);
+% Find the locations in the table of the top 10 largest numbers of isotopes
+[top10,index] = maxk(T.isotopes,10);
 % List the names of those elements
-%top10 = T.element(topes)
-% find another method - above doens't work
+names = T.element(index);
+disp(names)
+
+% Q4
+% Tables are easier to deal with because it is quite simple to index into
+% them. Using structures would be advantageous when you need to see
+% multiple properties of a single element at once. 
+
 
 
 
