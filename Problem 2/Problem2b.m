@@ -1,19 +1,17 @@
 % input number and unit
 str = input('Input time in seconds (s), minutes (m), hours (h), or days (d)' , 's');
 
-% Not sure how to do this since the input is now a string instead of just a
-% number
-% reject non-numeric values
-%if ~isnumeric(str)
-  % error("input must be a number with unit")
-%end
-
 % split the number from the unit
 newStr = split(str);
 % extract the number
 numb = newStr{1};
 % convert the string to a number
 time = str2num(numb);
+
+reject non-numeric values
+if ~isnumeric(time)
+  error("input must be a number with unit")
+end
 
 % extract the unit
 unit = newStr{2};
