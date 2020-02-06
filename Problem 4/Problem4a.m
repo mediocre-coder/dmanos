@@ -26,7 +26,7 @@ disp(sort(d30))
 disp('Q2')
 % Calculate the average atomic weight of elements discovered in the 20th
 % century
-avg = mean(T.discyear>=1901 & T.discyear<=2000);
+avg = mean(T.atomicweight(T.discyear>=1901 & T.discyear<=2000));
 disp(avg)
 % List those elements' symbols
 disc20 = T.symbol(T.discyear>=1901 & T.discyear<=2000);
