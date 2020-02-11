@@ -1,3 +1,3 @@
-function [x,t] = (vi,a)
+function [y,t] = Projectile(vi,a)
 
 % input

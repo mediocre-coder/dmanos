@@ -8,7 +8,7 @@ numb = newStr{1};
 % convert the string to a number
 time = str2num(numb);
 
-reject non-numeric values
+% reject non-numeric values
 if ~isnumeric(time)
   error("input must be a number with unit")
 end
@@ -17,7 +17,7 @@ end
 unit = newStr{2};
 % differentiate between units and convert to seconds
 if unit == 's'
-    T = time
+    T = time;
 elseif unit == 'm'
     T = time*60;
 elseif unit == 'h'
