@@ -9,3 +9,6 @@ It looks like you fixed up Problem 3 just fine. I love the number of comments th
 
 ## Feb 9
 You're getting an error on that scatterplot I see. Have you taken a look at the numbers in `t`? I thing if you go to the first row of `t` you'll see the problem. Problem2b looks good, but has one mistake. It's such a small thing, but small things mean everything in programming.
+
+## Feb 17
+Looks like you found the small mistake in 2b, I'm happy with that now. Your `climate.m` program is working and producing some nice graphs. The only criticism that I have is that there is a lot of hard coding going on in your program. What I mean is that your program relies on the fact that you have exactly 168 rows of data, you may want to try to generalize this a bit more so that if I were to update the file up to 2020 data, your program would incorporate the new data.
