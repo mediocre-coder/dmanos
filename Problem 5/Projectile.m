@@ -35,8 +35,7 @@ t = (2*viy)/g;
 % calculate range of flight
 x = (2*vix*viy)/g;
 
-% graph trajectory of projectile
-figure()
+% graph trajectory of projectile and animate the line
 plot(linspace(0,t,10),linspace(0,x,10),'-ok')
 xlabel('Time of Flight (s)')
 ylabel('Range of Flight (m)')
