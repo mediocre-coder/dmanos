@@ -12,3 +12,6 @@ You're getting an error on that scatterplot I see. Have you taken a look at the 
 
 ## Feb 17
 Looks like you found the small mistake in 2b, I'm happy with that now. Your `climate.m` program is working and producing some nice graphs. The only criticism that I have is that there is a lot of hard coding going on in your program. What I mean is that your program relies on the fact that you have exactly 168 rows of data, you may want to try to generalize this a bit more so that if I were to update the file up to 2020 data, your program would incorporate the new data.
+
+## Feb 24
+Problem 6 looks good. And you have a solid start on projectile.m, but there are still major issues to be figured out. Right now your program works for h=0, but not otherwise. You also are calculating the height of the projectile and not the range. As far as animation - what have you tried? Can you catch me tomorrow?
