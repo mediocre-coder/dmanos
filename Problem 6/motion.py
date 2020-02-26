@@ -14,5 +14,5 @@ def freefall(h,v,g):
     return vf,tf
     
     
-
+if
     

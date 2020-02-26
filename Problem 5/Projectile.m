@@ -1,6 +1,15 @@
-function [x,t] = Projectile(vi,viunit,a)
-% Uses initial velocity and launch angle of a projectile to calculate the
-% range and time of flight.
+function [x,t] = Projectile(vi,viunit,a,h)
+% Uses initial velocity, launch angle, and height of a projectile to calculate the
+% range and time of flight. Initial velocity can be entered in mph or m/s,
+% launch angle is entered in degrees, and height is entered in meters.
+
+% set default values
+if nargin == 0
+    vi = 60;
+    viunit = 'm/s';
+    a = 45;
+    h = 0;
+end
 
 % define function contraints
 if a <=0 || a >= 90
