@@ -15,3 +15,6 @@ Looks like you found the small mistake in 2b, I'm happy with that now. Your `cli
 
 ## Feb 24
 Problem 6 looks good. And you have a solid start on projectile.m, but there are still major issues to be figured out. Right now your program works for h=0, but not otherwise. You also are calculating the height of the projectile and not the range. As far as animation - what have you tried? Can you catch me tomorrow?
+
+## Mar 9
+Checked around, I don't see much change from the last time I looked.
