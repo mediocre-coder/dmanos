@@ -50,8 +50,8 @@ x = vix*t;
 % graph trajectory of projectile and animate the line
 % thank you Vivian for this code!
 time = linspace(0,t);
-height = (viy*time) - (1/2)*g*(time.^2) + h;
-range = vix*time;
+height = (viy.*time) - (1/2).*g.*(time.^2) + h;
+range = vix.*time;
 animatedline(range,height)
 xlabel('Range (m)')
 ylabel('Height (m)')

@@ -4,8 +4,9 @@ Starting point for Problem 6a
 """
 
 # import libraries
+import numpy as np
 import math as ma
-import matplotlib.pypplot as mp
+import matplotlib.pyplot as mp
 
 # set default values
 v = 10; 
@@ -28,12 +29,17 @@ def projectile(v,ang,h,g):
     # calculate range of flight
     r = vix*tf;
     # write function to graph trajectory
-    def trajectory(#get ranges of values):
-       # mp()
+    def trajectory(r,hmax):
+       # define range of vales
+       t = np.linspace(0,tf);
+ # can't figure out what the python versions of array operations (ex .*) are     
+       h = (viy*t)-(1/2)*g*(t**2)+h;
+       ra = vix*t;
+       mp(ra,h)
        mp.title("Trajectory of a Projectile")
        mp.xlabel("Range (m)")
        mp.ylabel("Height (m)")
-        return()
+       return()
     return r,tf,hmax    
 
 def freefall(h,v,g):
