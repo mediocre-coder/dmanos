@@ -12,7 +12,7 @@ if nargin == 0
 end
 
 % define function contraints
-if a <=0 || a >= 90
+if a <= 0 || a >= 90
     error("angle must be between 0 and 90 degrees")
 end
 
@@ -38,18 +38,23 @@ viy = vinew*sind(a);
 % define gravity constant
 g = 9.81;
 
+% calculate max height of flight
+mh = (2*((viy)^2)/g) + h;
+
 % calculate time of flight
-t = (2*viy)/g;
+t = (sqrt(2*mh/g)) + sqrt(2*h/g);
 
 % calculate range of flight
-x = (2*vix*viy)/g;
+x = vix*t;
 
 % graph trajectory of projectile and animate the line
-plot(linspace(0,t,10),linspace(0,x,10),'-ok')
-xlabel('Time of Flight (s)')
-ylabel('Range of Flight (m)')
-title('Range vs. Time of a Projectile')
-%an = animatedline(linspace(0,t,10),linspace(0,x,10))
-% not sure how to animate the line - I've tried a few different things and
-% none of them work
+% thank you Vivian for this code!
+time = linspace(0,t);
+height = (viy*time) - (1/2)*g*(time.^2) + h;
+range = vix*time;
+animatedline(range,height)
+xlabel('Range (m)')
+ylabel('Height (m)')
+title('Trajectory of a Projectile')
+% the points are plotting correctly, but the line still won't animate 
 end

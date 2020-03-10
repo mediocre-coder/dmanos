@@ -1,4 +1,5 @@
 function [varargout] = ptable(varargin)
+% 
 
 % import data
 pt = xlsread('periodictabledata');
@@ -20,7 +21,7 @@ aa = 23.3;
 ap = 12;
 
 % define variable delta
-if rem(an,2) == 0 & rem(nuc,2) == 0
+if rem(an,2) == 0 && rem(nuc,2) == 0
     d = 1;
 elseif rem(nuc,2) ~== 0
     d = 0;
