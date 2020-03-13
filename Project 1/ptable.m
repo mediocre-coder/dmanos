@@ -30,10 +30,10 @@ elseif rem(an,2) ~== 0 & rem(nuc,2) == 0
 end
 
 % calculate binding energy per nucleon using semi-empirical formula
-eb = (av*nuc)-(as*nuc^(2/3))-((ac*(an(an-1)))/nuc^(1/3))-((aa*((nuc-2*an)^2)/nuc))+((ap/nuc^(1/2))*d)
+eb = (av*nuc)-(as*nuc^(2/3))-((ac*(an(an-1)))/nuc^(1/3))-((aa*((nuc-2*an)^2)/nuc))+((ap/nuc^(1/2))*d);
 
 % calculate mass using semi-empirical formula
-ms = (nuc*mp)+((nuc-an)*mn)-(eb/1^2)
+ms = (nuc*mp)+((nuc-an)*mn)-(eb/1^2);
 
 % calculate mass using atomic weight
 mw =
