@@ -18,3 +18,9 @@ Problem 6 looks good. And you have a solid start on projectile.m, but there are 
 
 ## Mar 9
 Checked around, I don't see much change from the last time I looked.
+## Mar 15
+I think your motion.py package looks good and is basically there. Some corrections are needed though:
+1) when importing a package of functions, the `.py` is always implied, so your first statement in `motiontest.ipynb` should be `import motion as motion` or more concise later, `import motion as m`, then you can call your functions `m.projectile(45,60,10,9.8)`, you need the arguments because you have no defaults set (yet I hope). 
+2) the angles on line 23, 24 of motion.py should be `ang` since that's the variable that stores the input OR as it seems you want to do is convert on line 21, but you need to store the output from convertangle into n2 - the `convertangle` is a separate function and teh `projectile` function cannot "see" n2 (technically, n2 is not in the scope of projectile).
+
+I hope that's useful
