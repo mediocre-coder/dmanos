@@ -36,7 +36,7 @@ eb = (av*nuc)-(as*nuc^(2/3))-((ac*(an(an-1)))/nuc^(1/3))-((aa*((nuc-2*an)^2)/nuc
 ms = (nuc*mp)+((nuc-an)*mn)-(eb/1^2);
 
 % calculate mass using atomic weight
-mw =
+mw = aw;
 
 % allow for variable number of inputs and outputs
 if nargin == 0
