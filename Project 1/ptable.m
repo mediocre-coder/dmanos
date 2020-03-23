@@ -15,23 +15,6 @@ pt = readtable('periodictabledata.csv');
 % convert to structure
 s = table2struct(pt);
 
-% allow for variable number of inputs
-if nargin == 0
-    % define variable locations
-    an = pt(2:end , 1);
-    nuc = pt(2:end , 1);
-    aw = pt(2:end , 4);
-elseif nargin == 1
-    an = varargin{1};
-    nuc = an;
-elseif nargin == 2 && isnumeric(varargin{2}) 
-    an = varargin{1};
-    nuc = varargin{2};
-elseif nargin == 2 && ischar(varargin{2})
-    an = varargin{1};
-    field = varargin{2};
-end
-
 % define constants in MeV
 mp = 938.28;
 mn = 939.57;
@@ -43,48 +26,22 @@ ac = .714;
 aa = 23.3;
 ap = 12;
 
-% define variable delta
-if rem(an,2) == 0 && rem(nuc,2) == 0
-    d = 1;
-elseif rem(nuc,2) ~= 0
-    d = 0;
-elseif rem(an,2) ~= 0 && rem(nuc,2) == 0
-    d = -1;
-end
-
-% calculate binding energy per nucleon using semi-empirical formula
-    function[eb] = semiempeng(av,nuc,as,ac,an,aa,ap,d)
-    % takes constants, number of nucleons, atomic number, and variable
-    % delta and returns binding energy
-    eb = (av*nuc)-(as*nuc^(2/3))-((ac*(an(an-1)))/nuc^(1/3))-((aa*((nuc-2*an)^2)/nuc))+((ap/nuc^(1/2))*d);
-    end
-    
-% calculate mass using semi-empirical formula
-    function[ms] = semiempmass(nuc,mp,an,mn,eb)
-    % takes number of nucleons, proton mass, atomic number, neutron mass,
-    % and binding energy and returns mass
-    ms = (nuc*mp)+((nuc-an)*mn)-(eb/1^2);
-    end
-
-% calculate mass using atomic weight
-mw = aw;
-
-% determine stablility of isotope
-    function[stable] = stability(eb)
-    % determines whether or not a function is stable using its binding
-    % energy
-    if eb > 0
-        stable = 1;
-    else
-        stable = 0;
-    end
-    end
-    
-% allow for variable number of outputs
+% allow for variable number of inputs and outputs
 if nargin == 0
+    % define variable locations
+    ant = pt(2:end , 1);
+    nuct = pt(2:end , 1);
+    awt = pt(2:end , 4);
+    % convert tables to arrays for use in function
+    an = table2array(ant);
+    nuc = table2array(nuct);
+    aw = table2array(awt);
+    % calculate delta
+    [d] = delta(an,nuc);
+    % find mass using atomic weight
+    mw = aw;
     varargout = 0;
-    [eb] = semiempeng(av,nuc,as,ac,an,aa,ap,d);
-    [ms] = semiempmass(nuc,mp,an,mn,eb);
+    [eb,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn,d);
     figure(1)
     plot(an,ms)
     title('mass vs. atomic number')
@@ -101,23 +58,66 @@ if nargin == 0
     xlabel('atomic number')
     ylabel('binding energy (MeV)')
 elseif nargin == 1
-    [eb] = semiempeng(av,nuc,as,ac,an,aa,ap,d);
-    [ms] = semiempmass(nuc,mp,an,mn,eb);
+    an = varargin{1};
+    nuc = an;
+    % calculate delta
+    [d] = delta(an,nuc);
+    [~,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn,d);
     varargout{1} = ms;
     info = s(an);
     varargout{2} = info;
 elseif nargin == 2 && isnumeric(varargin{2})
-    [eb] = semiempeng(av,nuc,as,ac,an,aa,ap,d);
-    [ms] = semiempmass(nuc,mp,an,mn,eb);
+    an = varargin{1};
+    nuc = varargin{2};
+    % calculate delta
+    [d] = delta(an,nuc);
+    [eb,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn,d);
     varargout{1} = ms;
-    [eb] = semiempeng(av,nuc,as,ac,an,aa,ap,d);
     [stable] = stability(eb);
     varargout{2} = stable;
 elseif nargin == 2 && ischar(varargin{2})
-    [eb] = semiempeng(av,nuc,as,ac,an,aa,ap,d);
-    [ms] = semiempmass(nuc,mp,an,mn,eb);
+    an = varargin{1};
+    nuc = an;
+    % calculate delta
+    [d] = delta(an,nuc);
+    field = varargin{2};
+    [~,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn,d);
     varargout{1} = ms;
     value = s(an).field;
     varargout{2} = value;
 end
+
+% calculate binding energy per nucleon and mass using semi-empirical
+% formula
+    function[eb,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn,d)
+    % takes constants, number of nucleons, atomic number, proton mass,
+    % neutron mass, and delta and returns binding energy and mass  
+    % calculate binding energy per nucleon
+    eb = (av.*nuc)-(as.*nuc.^(2/3))-((ac.*(an.*(an-1)))./nuc.^(1/3))-((aa.*((nuc-2.*an).^2)./nuc))+((ap./nuc.^(1/2)).*d);
+    % calculate mass
+    ms = (nuc.*mp)+((nuc-an).*mn)-(eb/1^2);
+    end
+
+% define variable delta
+    function[d] = delta(an,nuc)
+    % takes atomic number and number of nucleons and returns delta
+    if rem(an,2) == 0 & rem(nuc,2) == 0
+    d = 1;
+    elseif rem(nuc,2) ~= 0
+    d = 0;
+    elseif rem(an,2) ~= 0 & rem(nuc,2) == 0
+    d = -1;
+    end
+    end
+
+% determine stablility of isotope
+    function[stable] = stability(eb)
+    % determines whether or not a function is stable using its binding
+    % energy
+    if eb > 0
+        stable = 1;
+    else
+        stable = 0;
+    end
+    end
 end   
