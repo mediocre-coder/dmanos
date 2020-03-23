@@ -8,20 +8,26 @@ import numpy as np
 import math as ma
 import matplotlib.pyplot as mp
 
-# set default values
-v = 10; 
-ang = 45;
-h = 0;
-g = 9.81;
+
+# I'm having trouble setting the default values - I first tried defining them 
+# before the functions, but that didn't work, and now I'm defining them inside
+# the functions using if statements, but it's still not working - not sure
+# what I'm doing wrong
 
 # write functions
 def projectile(v,ang,h,g):
     # takes inputs in m, s, deg
+    # set default values
+    if v == "" and ang == "" and h == "" and g == ""
+        v = 10; 
+        ang = 45;
+        h = 0;
+        g = 9.81;
     # convert deg to rad
     convertangle(ang,"deg");
     # find components of velocity
-    vix = v*(ma.cos(n2));
-    viy = v*(ma.sin(n2));
+    vix = v*(ma.cos(ang));
+    viy = v*(ma.sin(ang));
     # calculate max height of flight
     hmax = (2*((viy)**2)/g) + h;
     # calculate time of flight
@@ -44,6 +50,11 @@ def projectile(v,ang,h,g):
 
 def freefall(h,v,g):
     # takes inputs in m, s
+     # set default values
+    if v == "" and h == "" and g == ""
+        v = 10;
+        h = 0;
+        g = 9.81;
     # calculate final velocity
     vf = ma.sqrt(v**2+2*g*h);
     # calculate time of flight
