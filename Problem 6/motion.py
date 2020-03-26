@@ -15,14 +15,8 @@ import matplotlib.pyplot as mp
 # what I'm doing wrong
 
 # write functions
-def projectile(v,ang,h,g):
+def projectile(v=60,ang=45,h=0,g=9.81):
     # takes inputs in m, s, deg
-    # set default values
-    if v == "" and ang == "" and h == "" and g == ""
-        v = 10; 
-        ang = 45;
-        h = 0;
-        g = 9.81;
     # convert deg to rad
     convertangle(ang,"deg");
     # find components of velocity
@@ -48,13 +42,8 @@ def projectile(v,ang,h,g):
        return()
     return r,tf,hmax    
 
-def freefall(h,v,g):
+def freefall(h=0,v=60,g=9.81):
     # takes inputs in m, s
-     # set default values
-    if v == "" and h == "" and g == ""
-        v = 10;
-        h = 0;
-        g = 9.81;
     # calculate final velocity
     vf = ma.sqrt(v**2+2*g*h);
     # calculate time of flight

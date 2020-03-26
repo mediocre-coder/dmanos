@@ -36,8 +36,6 @@ if nargin == 0
     an = table2array(ant);
     nuc = table2array(nuct);
     aw = table2array(awt);
-    % calculate delta
-    [d] = delta(an,nuc);
     % find mass using atomic weight
     mw = aw;
     varargout = 0;
@@ -60,8 +58,6 @@ if nargin == 0
 elseif nargin == 1
     an = varargin{1};
     nuc = an;
-    % calculate delta
-    [d] = delta(an,nuc);
     [~,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn,d);
     varargout{1} = ms;
     info = s(an);
@@ -69,8 +65,6 @@ elseif nargin == 1
 elseif nargin == 2 && isnumeric(varargin{2})
     an = varargin{1};
     nuc = varargin{2};
-    % calculate delta
-    [d] = delta(an,nuc);
     [eb,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn,d);
     varargout{1} = ms;
     [stable] = stability(eb);
@@ -78,8 +72,6 @@ elseif nargin == 2 && isnumeric(varargin{2})
 elseif nargin == 2 && ischar(varargin{2})
     an = varargin{1};
     nuc = an;
-    % calculate delta
-    [d] = delta(an,nuc);
     field = varargin{2};
     [~,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn,d);
     varargout{1} = ms;
@@ -89,18 +81,9 @@ end
 
 % calculate binding energy per nucleon and mass using semi-empirical
 % formula
-    function[eb,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn,d)
+    function[eb,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn)
     % takes constants, number of nucleons, atomic number, proton mass,
-    % neutron mass, and delta and returns binding energy and mass  
-    % calculate binding energy per nucleon
-    eb = (av.*nuc)-(as.*nuc.^(2/3))-((ac.*(an.*(an-1)))./nuc.^(1/3))-((aa.*((nuc-2.*an).^2)./nuc))+((ap./nuc.^(1/2)).*d);
-    % calculate mass
-    ms = (nuc.*mp)+((nuc-an).*mn)-(eb/1^2);
-    end
-
-% define variable delta
-    function[d] = delta(an,nuc)
-    % takes atomic number and number of nucleons and returns delta
+        % neutron mass, and delta and returns binding energy and mass
     if rem(an,2) == 0 & rem(nuc,2) == 0
     d = 1;
     elseif rem(nuc,2) ~= 0
@@ -109,6 +92,13 @@ end
     d = -1;
     end
     end
+    % calculate binding energy per nucleon
+    eb = (av.*nuc)-(as.*nuc.^(2/3))-((ac.*(an.*(an-1)))./nuc.^(1/3))-((aa.*((nuc-2.*an).^2)./nuc))+((ap./nuc.^(1/2)).*d);
+    % calculate mass
+    ms = (nuc.*mp)+((nuc-an).*mn)-(eb/1^2);
+    end
+
+    
 
 % determine stablility of isotope
     function[stable] = stability(eb)
