@@ -39,7 +39,7 @@ if nargin == 0
     % find mass using atomic weight
     mw = aw;
     varargout = 0;
-    [eb,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn,d);
+    [eb,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn);
     figure(1)
     plot(an,ms)
     title('mass vs. atomic number')
@@ -58,14 +58,14 @@ if nargin == 0
 elseif nargin == 1
     an = varargin{1};
     nuc = an;
-    [~,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn,d);
+    [~,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn);
     varargout{1} = ms;
     info = s(an);
     varargout{2} = info;
 elseif nargin == 2 && isnumeric(varargin{2})
     an = varargin{1};
     nuc = varargin{2};
-    [eb,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn,d);
+    [eb,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn);
     varargout{1} = ms;
     [stable] = stability(eb);
     varargout{2} = stable;
@@ -73,7 +73,7 @@ elseif nargin == 2 && ischar(varargin{2})
     an = varargin{1};
     nuc = an;
     field = varargin{2};
-    [~,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn,d);
+    [~,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn);
     varargout{1} = ms;
     value = s(an).field;
     varargout{2} = value;
@@ -84,6 +84,8 @@ end
     function[eb,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn)
     % takes constants, number of nucleons, atomic number, proton mass,
         % neutron mass, and delta and returns binding energy and mass
+    
+    % calculate delta term    
     if rem(an,2) == 0 & rem(nuc,2) == 0
     d = 1;
     elseif rem(nuc,2) ~= 0
@@ -91,14 +93,11 @@ end
     elseif rem(an,2) ~= 0 & rem(nuc,2) == 0
     d = -1;
     end
-    end
     % calculate binding energy per nucleon
     eb = (av.*nuc)-(as.*nuc.^(2/3))-((ac.*(an.*(an-1)))./nuc.^(1/3))-((aa.*((nuc-2.*an).^2)./nuc))+((ap./nuc.^(1/2)).*d);
     % calculate mass
     ms = (nuc.*mp)+((nuc-an).*mn)-(eb/1^2);
     end
-
-    
 
 % determine stablility of isotope
     function[stable] = stability(eb)

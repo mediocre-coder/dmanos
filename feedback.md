@@ -28,3 +28,9 @@ I hope that's useful
 ## Mar 24
 Looking again at your motion.py - you seem to be having trouble setting default values for the arguments - in python it's actually much easier than in MATLAB - you set them in your function definition - `projectile(v=45,ang=60,h=0,g=9.81)` Python will take these values unless you execute the command giving values.
 You asked about this in an email the other day - there is something up with your delta function on line 40 - the problem is that you are passing an array to a function that is assigning a value d based on 1 value - delta is determining the the coefficient of one of the terms in the SEM formula - this term could be different for every element in `an` for instance - delta isn't designed to look at each individual element in the array - it's only written to handle 1 value at a time. My suggestion would be to fold `delta` into the `semiemp` function. It seems like a lot of overhead to pass these arguments among several functions when they naturally go together.
+
+## Mar 26 - things I need help with
+- In Project 1, I put my delta if statements inside semiemp, but I still can't figure out how to calculate the delta term of the arrays when I have 0 inputs.
+- For Problem 5 (projectile.m), I am still having trouble getting the line to animate. I also got a 5/10 in the gradebook for this so I'm not sure if that's because my line won't animate or if there are other issues.
+- I fixed the default value problem in Problem 6a (motion.py) and it seems to be working fine now.
+- I know I am not caught up with Problems 7 and 7a; I'll continue to work on those now that I've got the bulk of Project 1 out of the way.

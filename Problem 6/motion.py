@@ -8,12 +8,6 @@ import numpy as np
 import math as ma
 import matplotlib.pyplot as mp
 
-
-# I'm having trouble setting the default values - I first tried defining them 
-# before the functions, but that didn't work, and now I'm defining them inside
-# the functions using if statements, but it's still not working - not sure
-# what I'm doing wrong
-
 # write functions
 def projectile(v=60,ang=45,h=0,g=9.81):
     # takes inputs in m, s, deg
