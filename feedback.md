@@ -34,3 +34,7 @@ You asked about this in an email the other day - there is something up with your
 - For Problem 5 (projectile.m), I am still having trouble getting the line to animate. I also got a 5/10 in the gradebook for this so I'm not sure if that's because my line won't animate or if there are other issues.
 - I fixed the default value problem in Problem 6a (motion.py) and it seems to be working fine now.
 - I know I am not caught up with Problems 7 and 7a; I'll continue to work on those now that I've got the bulk of Project 1 out of the way.
+
+## Mar 28 - a note on the final paper
+I just wanted to let you know why our first draft is kind of empty - I reached out to Danny and Aly to let them know we need to start the first draft, but unfortunately I've been the only one to work on it so far. I did as much as I could before the 5pm today, but as you can probably understand I didn't want to do the whole thing myself since the project should be split up between the 3 of us.
+Also, in the final project summary, in one section it says we need 5 sources but in another it says we need 7 - which is correct?
