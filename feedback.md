@@ -38,3 +38,12 @@ You asked about this in an email the other day - there is something up with your
 ## Mar 28 - a note on the final paper
 I just wanted to let you know why our first draft is kind of empty - I reached out to Danny and Aly to let them know we need to start the first draft, but unfortunately I've been the only one to work on it so far. I did as much as I could before the 5pm today, but as you can probably understand I didn't want to do the whole thing myself since the project should be split up between the 3 of us.
 Also, in the final project summary, in one section it says we need 5 sources but in another it says we need 7 - which is correct?
+
+## Mar 30
+Oh, geez!! Go with the lower reference number.
+Please see the announcement I put out today about all those due dates - and yes, each member of the group should be contributing to any product that I look at, so please let me know if you need some kind of online facilitation among your group members. 
+Problem 6a is looking better, but as with the MATLAB version, you are calculating negative time values somehow, and so you get the wrong values for the time and range, and height - also can you display some more values in the .ipynb file?
+For those that you need help on:
+1) Problem 5's problems arise from having the wrong expressions for the time in the program, you aren't getting the correct answers, so look at the way you calculate time in line 45. The animated line isn't strictly necessary, I would like people to get a working example however. I would look for an example in the doc - the code usually involves a for loop.
+2) for the delta term in the case of no inputs, you have to calculate the mass for all the elements. Using the function you have (heck, using the function that I wrote), it's not easy to calculate this mass using an array in - array out thinking, this is a good time to use a for loop around the call to the massformula.
+
