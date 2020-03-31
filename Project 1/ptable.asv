@@ -84,7 +84,7 @@ end
     function[eb,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn)
     % takes constants, number of nucleons, atomic number, proton mass,
         % neutron mass, and delta and returns binding energy and mass
-    for an = 1:112 % I'm still getting an error "unrecognized variable 'd'" - not sure if I'm using the for loop correctly
+    for an = 1:112 % I'm still getting an error "unrecognized variable 'd'" - not 
     % calculate delta term    
     if rem(an,2) == 0 & rem(nuc,2) == 0
     d = 1;

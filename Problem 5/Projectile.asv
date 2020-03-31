@@ -58,16 +58,23 @@ end
 x = vix*t;
 
 % graph trajectory of projectile and animate the line
-clf
-l = animatedline;
+% thank you Vivian for this code!
 time = linspace(0,t);
 height = (viy.*time) - (1/2).*g.*(time.^2) + h;
 range = vix.*time;
+animatedline(range,height)
 xlabel('Range (m)')
 ylabel('Height (m)')
 title('Trajectory of a Projectile')
+% the points are plotting correctly, but the line still won't animate
+
+clf
+l = animatedline;
+time = linspace(0,t);
+y = sin(x);
 for k = 1:length(height)
-    addpoints(l,range(k),height(k));
+    addpoints(h,height(k),range(k));
     drawnow
 end
+
 end
