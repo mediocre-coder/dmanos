@@ -4,20 +4,47 @@ codex = { "a": 1, "b": 2, "c": 3, "d": 4, "e": 5, "f": 6, "g": 7, "h": 8, "i": 9
 
 # import
 import numpy as np
-np.load('hint.npy')
+hintcode = np.load('hint.npy')
+
+# thank you Aly for help starting this code!!
 
 # encode gettysburg into numbers
-def encode(gettysburg,codex):
+def encode(st,di):
+    # takes a string and dictionary and converts letters to numbers
+    numcode = []
+    # make gettysburg all lowercase to match case of codex
     gblowercase = gettysburg.lower()
-    num = []
-    for i in gblowercase:
-        num.append(codex[gblowercase[i]])    
-    return num
+    for k in gblowercase:
+        if k in di.keys():
+            numcode.append(di[k])
+    return numcode
 
-# decode the numbers back into gettysburg
-def decode(num,codex):
-   for k in num:
-       print(codex.keys)
-    return txt
-    
-# decode hint.py    
+encode(gettysburg,codex);
+print(numcode)
+### not sure what's going wrong here - the encoded result is being printed,
+### but it's not being stored in numcode
+
+# decode numcode back into gettysburg
+def decode(code,di):
+    # takes an encoded string and dictionary and convers numbers to letters
+    newst = []
+    for v in code:
+        if v in di.values():
+            newst.append(di[v])
+    newst = ''.join(newst)
+    return newst
+
+decode(numcode,codex);
+print(newst)
+
+# decode hint.py
+hint = []
+# shift numbers in hint code by 7
+for i in hintcode:
+    hintcode[i]+=7
+print(decode(hintcode,codex))
+
+
+
+
+
