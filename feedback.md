@@ -47,3 +47,7 @@ For those that you need help on:
 1) Problem 5's problems arise from having the wrong expressions for the time in the program, you aren't getting the correct answers, so look at the way you calculate time in line 45. The animated line isn't strictly necessary, I would like people to get a working example however. I would look for an example in the doc - the code usually involves a for loop.
 2) for the delta term in the case of no inputs, you have to calculate the mass for all the elements. Using the function you have (heck, using the function that I wrote), it's not easy to calculate this mass using an array in - array out thinking, this is a good time to use a for loop around the call to the massformula.
 
+## April 2 - things I need help with
+- In 'ptable', on line 87, I'm still getting an error "unrecognized variable d" - I'm not sure if I'm using the for loop correctly
+- In 'projectile', I got the line to animate. I tried different methods of calculating t, but I'm still getting the same numbers. I'm not sure where I'm going wrong with the equation.
+- In 'encoded', for my function 'encode', the encoded result is being printed, but it's not being stored in the variable 'numcode' - I'm not sure what's going wrong
