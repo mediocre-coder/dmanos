@@ -29,7 +29,12 @@ def projprojectile(hi=10,vi=60,angi=45):
     # initial angle in deg and returns max height, range, time of flight, and
     # a graph of trajectory
     # error messages for inavalid inputs
-    ###########write code for errors#################
+    if hi < 0:
+        print('height must be 0 or greater')
+    if vi <= 0:
+        print('velocity must be greater than 0')
+    if angi <=0 or angi >= 90:
+        print('angle must be between 0 and 90 degrees')
     # convert deg to rad
     angrad = np.radians(angi);
     # calculate components of initial velocity
