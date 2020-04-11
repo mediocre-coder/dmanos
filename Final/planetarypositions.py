@@ -21,25 +21,29 @@ n = e.Neptune();
 p = e.Pluto();
 
 # write a function that takes inputs of planet and date (as a string of 
-# format yyyy/mm/dd) and returns a graph of the planet's position relative to
+# format 'yyyy/mm/dd') and returns a graph of the planet's position relative to
 # the Earth, which is located at the origin
 def position(pl,date):
     # position is returned in terms of right ascension (hours of arc around
     # celestial equator) and declination (degrees north of celestial equator)
-    pl.compute(date);
+    pla = pl.compute(date);
     
-    # on a cartesian plane, take right ascension to be analogous to x and 
-    # declination to be analogous to y
-    x = pl.ra;
-    y = pl.dec;
+    # return the value of right ascension - declination can be ignored because
+    # it is not necessary for 2D plotting
+    ra = pla.ra;
+    # convert to radians
+    radra = pla.repr(ra);
     
-    # convert cartesian coordinates to polar coordinates
-    r = np.sqrt(x**2+y**2);
-    theta = np.arctan2(y,x);
+    # normalize the angle so that is in the interval [0,2pi]
+    radranorm = radra.norm;
+    
+    # return the value of distance to Earth in km
+    dist = pla.earth_distance;
+    
+    # convert angle and distance to polar coordinates
+    r = dist;
+    theta = radranorm;
     
     # graph result
     graph = mp.polar(theta,r);
     return graph
-
-### only an empty plot is being returned - can't figure out how to get it to 
-### plot the point
