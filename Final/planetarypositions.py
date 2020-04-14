@@ -26,22 +26,23 @@ p = e.Pluto();
 def position(pl,date):
     # position is returned in terms of right ascension (hours of arc around
     # celestial equator) and declination (degrees north of celestial equator)
-    pl.compute(date);
+    pla = pl.compute(date);
     
     # return the value of right ascension (declination can be ignored because
     # it is not necessary for 2D plotting) and convert to radians
-    radra = repr(pl.ra);
-    
+    #radra = repr(pl.ra);
+    #rias = pl.g_ra
+    deg = e.hours(pl.g_ra)
     # normalize the angle so that is in the interval [0,2pi]
-    radranorm = radra.norm;
+    #radranorm = radra.norm;
     
     # return the value of distance to Earth in km
     dist = pl.earth_distance;
     
     # convert angle and distance to polar coordinates
-    r = dist;
-    theta = radranorm;
+    #r = dist;
+    #theta = radranorm;
     
     # graph result
-    graph = mp.polar(theta,r);
-    return graph
+    #graph = mp.polar(theta,r);
+    return pla, deg, dist#graph
