@@ -26,13 +26,13 @@ p = e.Pluto();
 def position(pl,date):
     # position is returned in terms of right ascension (hours of arc around
     # celestial equator) and declination (degrees north of celestial equator)
-    pla = pl.compute(date);
+    # pla = pl.compute(date);
     
     # return the value of right ascension - declination can be ignored because
     # it is not necessary for 2D plotting
-    ra = pla.ra;
+    rias = pl.ra;
     # convert to radians
-    radra = pla.repr(ra);
+    radra = repr(rias);
     
     # normalize the angle so that is in the interval [0,2pi]
     radranorm = radra.norm;
