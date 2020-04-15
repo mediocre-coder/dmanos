@@ -1,14 +1,15 @@
 function [x,t] = Projectile(vi,viunit,a,h)
-% Uses initial velocity, launch angle, and height of a projectile to calculate the
-% range and time of flight. Initial velocity can be entered in mph or m/s,
-% launch angle is entered in degrees, and height is entered in meters.
+% Uses initial velocity, launch angle, and height of a projectile to 
+% calculate the range and time of flight. Initial velocity can be entered 
+% in mph or m/s, launch angle is entered in degrees, and height is entered 
+% in meters.
 
 % set default values
 if nargin == 0
     vi = 60;
     viunit = 'm/s';
     a = 45;
-    h = 0;
+    h = 10;
 end
 
 % define function contraints
@@ -38,22 +39,22 @@ viy = vinew*sind(a);
 % define gravity constant
 g = 9.81;
 
-% calculate max height of flight
-%mh = (2*((viy)^2)/g) + h;
-
 % calculate time of flight
-% tried a different method but I'm still getting the same numbers so I
-% can't really figure out where I'm going wrong
+%%% tried using the mathematica notebook equations but then it didn't work
+%%% for h == 0 :(
 if h == 0
-    t = 2*(0-viy)/(-g);
+   %t = viy/(-g) + sqrt((viy)^2/g^2 + 2*(h/(-g)));
+   t = 2*(0-viy)/(-g);
 else
+    %%% can't really figure out what's going on here - it's only plotting
+    %%% the trajectory to the original height, not to zero - when I try to
+    %%% fix it it plots negative height which is obvously wrong too
     tup = 2*(0-viy)/(-g);
-    mh = viy*tmh+(.5*(-g))*tmh^2;
+    mh = viy*tup+(.5*(-g))*tup^2;
     disttoground = mh + h;
-    tdown = sqrt(disttoground/(.5*g));
+    tdown = sqrt(disttoground/(.5*(g)));
     t = tup + tdown;
 end
-
 % calculate range of flight
 x = vix*t;
 

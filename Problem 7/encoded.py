@@ -19,30 +19,27 @@ def encode(st,di):
             numcode.append(di[k])
     return numcode
 
-encode(gettysburg,codex);
-print(numcode)
-### not sure what's going wrong here - the encoded result is being printed,
-### but it's not being stored in numcode
+encoded = encode(gettysburg,codex);
+print(encoded)
 
 # decode numcode back into gettysburg
 def decode(code,di):
     # takes an encoded string and dictionary and convers numbers to letters
     newst = []
-    for v in code:
-        if v in di.values():
-            newst.append(di[v])
+    dibackwards = {v: k for k, v in di.items()}
+    for k in code:
+        if k in dibackwards.keys():
+            newst.append(dibackwards[k])
     newst = ''.join(newst)
     return newst
 
-decode(numcode,codex);
-print(newst)
+decoded = decode(encoded,codex);
+print(decoded) 
 
 # decode hint.py
-hint = []
-# shift numbers in hint code by 7
-for i in hintcode:
-    hintcode[i]+=7
-print(decode(hintcode,codex))
+# shift numbers in hintcode by 7
+hintcodeshift = [x-7 for x in hintcode];
+print(decode(hintcodeshift,codex))
 
 
 
