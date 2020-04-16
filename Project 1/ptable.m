@@ -47,7 +47,8 @@ if nargin == 0
     ylabel('mass from equation (MeV)')
     hold on
     plot(an,mw)
-    yylabel('mass from atomic weight (MeV)')
+    yyaxis right
+    ylabel('mass from atomic weight (MeV)')
     legend('equation','atomic weight')
     hold off
     figure(3)
@@ -81,20 +82,31 @@ end
 
 % calculate binding energy per nucleon and mass using semi-empirical
 % formula
+%%% big thanks to Tyler's code for help with this
     function[eb,ms] = semiemp(av,nuc,as,ac,an,aa,ap,mp,mn)
     % takes constants, number of nucleons, atomic number, proton mass,
-        % neutron mass, and delta and returns binding energy and mass
-    for an = 1:112 % I'm still getting an error "unrecognized variable 'd'" - not sure if I'm using the for loop correctly
-    % calculate delta term    
-    if rem(an,2) == 0 & rem(nuc,2) == 0
-    d = 1;
-    elseif rem(nuc,2) ~= 0
-    d = 0;
-    elseif rem(an,2) ~= 0 & rem(nuc,2) == 0
-    d = -1;
+    % neutron mass, and delta and returns binding energy and mass
+    eb = (av.*nuc)-(as.*nuc.^(2/3))-((ac.*(an.*(an-1)))./nuc.^(1/3))-((aa.*((nuc-2.*an).^2)./nuc))+((ap./nuc.^(1/2)));
+    for an = 1:112 %%% unfortunately still can't figure this part out
+        %[~,R1] = quorem(an,2);
+        %[~,R2] = quorem(nuc,2);
+    % calculate delta term   
+    if mod(an, 2) == 0
+    if mod(nuc, 2) == 0
+        eb = eb + ap/sqrt(an);
+    else
+        eb = eb - ap/sqrt(an);
     end
+    end
+    %if R1 == 0 & R2 == 0 %rem(an,2) == 0 & rem(nuc,2) == 0
+    %d = 1;
+    %elseif R2 ~= 0 %rem(nuc,2) ~= 0
+    %d = 0;
+    %elseif R1 ~= 0 & R2== 0 %rem(an,2) ~= 0 & rem(nuc,2) == 0
+    %d = -1;
+    %end
     % calculate binding energy per nucleon
-    eb = (av.*nuc)-(as.*nuc.^(2/3))-((ac.*(an.*(an-1)))./nuc.^(1/3))-((aa.*((nuc-2.*an).^2)./nuc))+((ap./nuc.^(1/2)).*d);
+    %eb = (av.*nuc)-(as.*nuc.^(2/3))-((ac.*(an.*(an-1)))./nuc.^(1/3))-((aa.*((nuc-2.*an).^2)./nuc))+((ap./nuc.^(1/2)));
     % calculate mass
     ms = (nuc.*mp)+((nuc-an).*mn)-(eb/1^2);
     end
